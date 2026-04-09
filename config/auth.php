@@ -47,6 +47,11 @@ return [
         'driver' => 'session',
         'provider' => 'siswa',
     ],
+
+    'admin' => [
+        'driver' => 'session',
+        'provider' => 'admin',
+    ],
 ],
 
 'providers' => [
@@ -58,6 +63,11 @@ return [
     'siswa' => [
         'driver' => 'eloquent',
         'model' => App\Models\Siswa::class,
+    ],
+
+    'admin' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\User::class,
     ],
 ],
 

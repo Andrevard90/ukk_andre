@@ -12,14 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('input_aspirasi', function (Blueprint $table) {
-    $table->id('id_pelaporan');
-    $table->string('nis');
-    $table->foreign('nis')->references('nis')->on('siswa');
-    $table->unsignedBigInteger('id_kategori');
-    $table->string('lokasi');
-    $table->text('ket');
-    $table->timestamps();
-});
+            $table->id('id_pelaporan');
+            $table->string('nis');
+            $table->foreign('nis')->references('nis')->on('siswa')->onDelete('cascade');
+            $table->unsignedBigInteger('id_kategori');
+            $table->foreign('id_kategori')->references('id_kategori')->on('kategori')->onDelete('cascade');
+            $table->string('lokasi');
+            $table->text('ket')->nullable();
+            $table->string('foto')->nullable();
+            $table->date('tanggal')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

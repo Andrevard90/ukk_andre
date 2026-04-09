@@ -11,16 +11,11 @@ return new class extends Migration
      */
 public function up()
 {
-    Schema::table('aspirasi', function (Blueprint $table) {
-        $table->string('foto')->nullable();
-        $table->date('tanggal')->nullable();
-    });
+    // Tidak diperlukan - schema sudah sesuai
 }
 
 public function down()
 {
-    Schema::table('aspirasi', function (Blueprint $table) {
-        $table->dropColumn(['foto', 'tanggal']);
-    });
+    //
 }
 };

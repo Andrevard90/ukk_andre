@@ -103,26 +103,25 @@
 
                 <div>
                     <label class="block text-[10px] font-black text-cyan-500 uppercase tracking-[0.2em] mb-2 ml-1">Password</label>
-                    <input type="password" name="password" required placeholder="Minimal 6 karakter"
+                    <input type="password" name="password" required placeholder="Masukkan password"
                         class="input-focus-glow w-full rounded-2xl border border-white/5 bg-white/[0.02] px-6 py-3.5 text-white placeholder-white/10 outline-none transition-all duration-300">
                 </div>
 
-                <div>
-                    <label class="block text-[10px] font-black text-cyan-500 uppercase tracking-[0.2em] mb-2 ml-1">Konfirmasi Password</label>
-                    <input type="password" name="password_confirmation" required placeholder="Ulangi Password"
-                        class="input-focus-glow w-full rounded-2xl border border-white/5 bg-white/[0.02] px-6 py-3.5 text-white placeholder-white/10 outline-none transition-all duration-300">
-                </div>
-
-                <button type="submit" class="btn-grad w-full text-white font-bold py-3.5 px-6 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20">
-                    Daftar Akun Siswa
+                <button type="submit" 
+                    class="btn-grad w-full rounded-2xl py-4 text-xs font-black text-white shadow-xl shadow-cyan-900/20 uppercase tracking-widest mt-2 active:scale-95 transition-transform">
+                    Daftar Sekarang
                 </button>
-
-                <p class="text-center text-white/60 text-sm">
-                    Sudah punya akun? <a href="{{ route('login') }}" class="text-cyan-400 font-bold hover:underline">Login di sini</a>
-                </p>
             </form>
-        </div>
 
+            <div class="mt-8 pt-6 border-t border-white/5 text-center">
+                <p class="text-sm text-slate-500 font-medium">
+                    Sudah terdaftar? 
+                    <a href="{{ route('login') }}" class="text-cyan-400 hover:text-white transition-colors font-bold decoration-cyan-500/30 underline underline-offset-4">Masuk ke Akun</a>
+                </p>
+            </div>
+        </div>
+        
+        <p class="text-center text-[10px] font-bold text-slate-600 mt-10 uppercase tracking-[0.3em] animate__animated animate__fadeIn">&copy; {{ date('Y') }} E-Aspirasi Sekolah</p>
     </div>
 
 </body>

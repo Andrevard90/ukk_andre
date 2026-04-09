@@ -11,23 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('aspirasi', function (Blueprint $table) {
-            // Add keterangan column if it doesn't exist
-            if (!Schema::hasColumn('aspirasi', 'keterangan')) {
-                $table->text('keterangan')->nullable()->after('lokasi');
-            }
-        });
+        // Tidak diperlukan - schema sudah sesuai
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::table('aspirasi', function (Blueprint $table) {
-            if (Schema::hasColumn('aspirasi', 'keterangan')) {
-                $table->dropColumn('keterangan');
-            }
-        });
+        //
     }
 };

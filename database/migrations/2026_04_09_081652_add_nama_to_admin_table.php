@@ -11,11 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Migration tidak diperlukan - skema sudah sesuai di create_aspirasi_table
+        Schema::table('admin', function (Blueprint $table) {
+            $table->string('nama')->after('username');
+        });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        //
+        Schema::table('admin', function (Blueprint $table) {
+            $table->dropColumn('nama');
+        });
     }
 };

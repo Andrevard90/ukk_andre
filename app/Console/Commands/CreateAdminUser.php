@@ -8,23 +8,10 @@ use Illuminate\Support\Facades\Hash;
 
 class CreateAdminUser extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'admin:create';
 
-    /**
-     * The description of the console command.
-     *
-     * @var string
-     */
     protected $description = 'Buat user admin baru untuk sistem';
 
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
         $this->info('╔════════════════════════════════════════╗');
@@ -32,43 +19,15 @@ class CreateAdminUser extends Command
         $this->info('╚════════════════════════════════════════╝');
         $this->newLine();
 
-        $nik = $this->ask('Masukkan NIK (16 digit)');
-        
-        if (strlen($nik) !== 16 || !ctype_digit($nik)) {
-            $this->error('❌ NIK harus 16 digit angka!');
-            return 1;
-        }
-
-        if (User::where('nik', $nik)->exists()) {
-            $this->error('❌ NIK sudah terdaftar!');
-            return 1;
-        }
-
-        $name = $this->ask('Masukkan nama lengkap');
-        
-        if (empty($name)) {
-            $this->error('❌ Nama tidak boleh kosong!');
-            return 1;
-        }
-
         $username = $this->ask('Masukkan username');
         
+        if (empty($username) || strlen($username) < 3) {
+            $this->error('❌ Username minimal 3 karakter!');
+            return 1;
+        }
+
         if (User::where('username', $username)->exists()) {
             $this->error('❌ Username sudah digunakan!');
-            return 1;
-        }
-
-        $email = $this->ask('Masukkan email');
-        
-        if (User::where('email', $email)->exists()) {
-            $this->error('❌ Email sudah terdaftar!');
-            return 1;
-        }
-
-        $telp = $this->ask('Masukkan nomor telepon');
-        
-        if (empty($telp)) {
-            $this->error('❌ Nomor telepon tidak boleh kosong!');
             return 1;
         }
 
@@ -88,31 +47,24 @@ class CreateAdminUser extends Command
 
         try {
             User::create([
-                'nik' => $nik,
-                'name' => $name,
                 'username' => $username,
-                'email' => $email,
-                'telp' => $telp,
                 'password' => Hash::make($password),
-                'level' => 'admin',
+                'role' => 'admin',
             ]);
 
             $this->newLine();
-            $this->info('✅ User admin berhasil dibuat!');
+            $this->info('✅ Admin berhasil dibuat!');
             $this->newLine();
             $this->table(
-                ['Data', 'Nilai'],
+                ['Field', 'Value'],
                 [
-                    ['NIK', $nik],
-                    ['Nama', $name],
                     ['Username', $username],
-                    ['Email', $email],
-                    ['Telepon', $telp],
-                    ['Level', 'admin'],
+                    ['Password', '(terenkripsi)'],
+                    ['Role', 'admin'],
                 ]
             );
             $this->newLine();
-            $this->info('📌 Anda dapat login di: http://yoursite.com/admin-login');
+            $this->info('📌 Login di: http://localhost/login (Tab: Login Admin)');
             
             return 0;
 
@@ -122,3 +74,4 @@ class CreateAdminUser extends Command
         }
     }
 }
+
